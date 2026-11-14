@@ -1,6 +1,6 @@
 // Bird.java
-// D. Singletary
-// 3/15/25
+// Liliana Torres
+// Friday, November 13th, 2026
 // Represents a bird base class
 
 package edu.fscj.cop2800c.penguin;
@@ -14,15 +14,25 @@ public class Bird implements Comparable<Bird> {
     private double bodyMass;
     private String sex;
 
-    // Constructor
-    public Bird(int sampleNum, double culmenLength, 
-                double culmenDepth, double bodyMass, String sex) {
-        this.sampleNum = sampleNum;
-        this.culmenLength = culmenLength;
-        this.culmenDepth = culmenDepth;
-        this.bodyMass = bodyMass;
-        this.sex = sex;
+    // Constructor    
+    public Bird(int sampleNum, double culmenLength,
+          double culmenDepth, double bodyMass,
+          String sex) throws InvalidBirdDataException {
+
+       if (sampleNum < 0 ||
+             culmenLength < 0 || culmenDepth < 0 ||
+             bodyMass < 0 || sex == null || sex.isEmpty()) {
+          throw new InvalidBirdDataException(
+              "Invalid Bird data encountered.");
+       }
+
+       this.sampleNum = sampleNum;
+       this.culmenLength = culmenLength;
+       this.culmenDepth = culmenDepth;
+       this.bodyMass = bodyMass;
+       this.sex = sex;
     }
+
 
     // Getter methods
     public int getSampleNum() {
